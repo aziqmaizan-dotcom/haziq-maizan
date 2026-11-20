@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAZIQ. — Video Editor &amp; AI Creative Content Creator</title>
+    <meta name="description" content="Portfolio of Muhammad Haziq Hafiz Bin Maizan (Haziq), a Video Editor and AI Creative Content Creator based in Melaka, Malaysia. Specializing in CapCut PC editing, visual storytelling, and AI-assisted content creation.">
+    <meta name="author" content="Muhammad Haziq Hafiz Bin Maizan">
+    
+    <!-- Google Fonts: Editorial Serif (Cormorant Garamond) + Modern Sans-Serif (Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. DESIGN TOKENS & VARIABLES
+           ========================================================================== */
+        :root {
+            --bg-primary: #101010;
+            --bg-secondary: #191919;
+            --bg-elevated: #202020;
+            --text-primary: #F5F2EC;
+            --text-secondary: #A5A5A5;
+            --text-muted: #6E6E6E;
+            --accent: #B7A58B;
+            --accent-hover: #CBBBA3;
+            --accent-subtle: rgba(183, 165, 139, 0.12);
+            --border-subtle: rgba(245, 242, 236, 0.08);
+            --border-accent: rgba(183, 165, 139, 0.35);
+
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            --container-max: 1280px;
+            --section-padding: clamp(5rem, 10vw, 8.5rem);
+            --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* ==========================================================================
+           2. RESET & BASE STYLES
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background-color: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        img, video {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 4vw, 3rem);
+        }
+
+        /* ==========================================================================
+           3. TYPOGRAPHY & SECTION HEADERS
+           ========================================================================== */
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+
+        .eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 1px;
+            background-color: var(--accent);
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+            font-weight: 400;
+            line-height: 1.12;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .section-subtitle {
+            font-size: clamp(0.95rem, 1.2vw, 1.0625rem);
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin-top: 1rem;
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           4. BUTTONS
+           ========================================================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            padding: 0.95rem 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.4s var(--transition-smooth);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--bg-primary);
+            border: 1px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-subtle);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           5. NAVIGATION BAR
+           ========================================================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.5rem 0;
+            transition: background-color 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(16, 16, 16, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 1rem 0;
+            border-bottom-color: var(--border-subtle);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            font-family: var(--font-serif);
+            font-size: 1.65rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8125rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 0.25rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent);
+            transition: width 0.35s var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0.5rem;
+            z-index: 110;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background-color: var(--text-primary);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
+        }
+
+        /* ==========================================================================
+           6. SECTION 1: HERO SECTION
+           ========================================================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 5rem;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        /* Cinematic Background Video / Ambient Frame Placeholder */
+        .hero-media-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-media-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.22;
+            filter: grayscale(35%) contrast(105%);
+        }
+
+        /* Architectural subtle framing overlay (no loud gradients) */
+        .hero-media-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 75% 40%, rgba(183, 165, 139, 0.06) 0%, rgba(16, 16, 16, 0.94) 68%),
+                        linear-gradient(to bottom, rgba(16, 16, 16, 0.75) 0%, rgba(16, 16, 16, 0.98) 100%);
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 3rem;
+            align-items: end;
+        }
+
+        .availability-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.45rem 1rem;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(183, 165, 139, 0.18);
+            animation: subtlePulse 2.8s infinite ease-in-out;
+        }
+
+        @keyframes subtlePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.55; transform: scale(0.92); }
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 6.8vw, 5.75rem);
+            font-weight: 400;
+            line-height: 1.03;
+            letter-spacing: -0.015em;
+            color: var(--text-primary);
+            margin-bottom: 1.75rem;
+        }
+
+        .hero-title .line {
+            display: block;
+        }
+
+        .hero-title .italic-accent {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 1.3vw, 1.15rem);
+            font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin-bottom: 2.5rem;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Editorial Showreel / Reel Preview Card in Hero Right */
+        .hero-reel-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            padding: 1rem;
+            border-radius: 3px;
+        }
+
+        .hero-reel-frame {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            background-color: #141414;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .hero-reel-frame video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+        }
+
+        .reel-frame-top, .reel-frame-bottom {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.6875rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .reel-center-trigger {
+            position: relative;
+            z-index: 2;
+            align-self: center;
+            text-align: center;
+        }
+
+        .play-circle-sm {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+            background-color: rgba(16, 16, 16, 0.65);
+            backdrop-filter: blur(6px);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: all 0.35s var(--transition-smooth);
+            margin-bottom: 0.65rem;
+        }
+
+        .hero-reel-card:hover .play-circle-sm {
+            background-color: var(--accent);
+            color: var(--bg-primary);
+            transform: scale(1.06);
+        }
+
+        /* ==========================================================================
+           7. SECTION 2: ABOUT ME
+           ========================================================================== */
+        .about-section {
+            padding: var(--section-padding) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: clamp(2.5rem, 6vw, 5.5rem);
+            align-items: center;
+        }
+
+        .profile-frame {
+            position: relative;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            padding: 1.1rem;
+        }
+
+        .profile-frame::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 48px;
+            height: 48px;
+            border-top: 1px solid var(--accent);
+            border-left: 1px solid var(--accent);
+            pointer-events: none;
+        }
+
+        .profile-frame::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 48px;
+            height: 48px;
+            border-bottom: 1px solid var(--accent);
+            border-right: 1px solid var(--accent);
+            pointer-events: none;
+        }
+
+        .profile-image-box {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            background-color: #141414;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .profile-image-box img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(103%);
+        }
+
+        .placeholder-caption {
+            position: relative;
+            z-index: 1;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            border: 1px dashed rgba(183, 165, 139, 0.3);
+            padding: 1.5rem;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 300;
+            margin-bottom: 1.35rem;
+            line-height: 1.8;
+        }
+
+        .about-content p:first-of-type {
+            margin-top: 1.75rem;
+            color: var(--text-primary);
+            font-size: 1.15rem;
+        }
+
+        .about-meta-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .meta-item span {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .meta-item strong {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* ==========================================================================
+           8. SECTION 3: MY SELECTED WORK (PORTFOLIO GALLERY)
+           ========================================================================== */
+        .work-section {
+            padding: var(--section-padding) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .work-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Category Filter Tabs */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .filter-btn {
+            padding: 0.55rem 1.15rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            background-color: transparent;
+            border: 1px solid transparent;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-subtle);
+        }
+
+        .filter-btn.active {
+            color: var(--bg-primary);
+            background-color: var(--accent);
+            border-color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Editorial Asymmetric / Varied Aspect Ratio Masonry Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .project-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            transition: transform 0.45s var(--transition-smooth), border-color 0.45s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+        }
+
+        /* Varied Editorial Column Spans & Aspect Ratios */
+        .project-card.span-7 { grid-column: span 7; }
+        .project-card.span-5 { grid-column: span 5; }
+        .project-card.span-4 { grid-column: span 4; }
+        .project-card.span-6 { grid-column: span 6; }
+
+        .project-card.hidden-item {
+            display: none;
+        }
+
+        .project-thumb-wrapper {
+            position: relative;
+            width: 100%;
+            background-color: #141414;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .ratio-16-9 { aspect-ratio: 16 / 9; }
+        .ratio-4-5  { aspect-ratio: 4 / 5; }
+        .ratio-9-16 { aspect-ratio: 9 / 14; }
+        .ratio-1-1  { aspect-ratio: 1 / 1; }
+
+        .project-thumb-wrapper video,
+        .project-thumb-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s var(--transition-smooth), filter 0.5s ease;
+            filter: brightness(0.88);
+            background-color: #141414;
+        }
+
+        .project-card:hover .project-thumb-wrapper video,
+        .project-card:hover .project-thumb-wrapper img {
+            transform: scale(1.03);
+            filter: brightness(0.75);
+        }
+
+        .project-card.is-playing .play-overlay,
+        .project-card.is-playing .video-placeholder-label {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .project-card.is-playing .project-thumb-wrapper video {
+            transform: none;
+            filter: brightness(1);
+        }
+
+        .modal-trigger-btn {
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border-accent);
+            padding-bottom: 0.2rem;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .modal-trigger-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+
+        /* Clear Placeholder Overlay for Videos */
+        .video-placeholder-label {
+            position: absolute;
+            top: 0.9rem;
+            left: 0.9rem;
+            z-index: 3;
+            background-color: rgba(16, 16, 16, 0.82);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-subtle);
+            padding: 0.3rem 0.65rem;
+            font-size: 0.65rem;
+            font-family: monospace;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+        }
+
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background: rgba(16, 16, 16, 0.25);
+            transition: background 0.35s ease;
+        }
+
+        .play-btn-circle {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background-color: rgba(16, 16, 16, 0.75);
+            border: 1px solid var(--accent);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.35s var(--transition-smooth);
+        }
+
+        .project-card:hover .play-btn-circle {
+            background-color: var(--accent);
+            color: var(--bg-primary);
+            transform: scale(1.08);
+        }
+
+        .play-label {
+            font-size: 0.68rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            opacity: 0.9;
+        }
+
+        .project-info {
+            padding: 1.5rem 1.65rem 1.75rem;
+        }
+
+        .project-category {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.45rem;
+        }
+
+        .project-title {
+            font-family: var(--font-serif);
+            font-size: 1.55rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.25;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-desc {
+            font-size: 0.885rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           9. SECTION 4: BEFORE & AFTER COMPARISON SHOWCASE
+           ========================================================================== */
+        .ba-section {
+            padding: var(--section-padding) 0;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .ba-header {
+            max-width: 680px;
+            margin-bottom: 3.5rem;
+        }
+
+        .ba-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .ba-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            padding: 1rem;
+        }
+
+        .ba-slider-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            cursor: ew-resize;
+            background-color: #141414;
+        }
+
+        .ba-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .ba-layer img, .ba-layer video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Simulated RAW ungraded look for placeholder before layer */
+        .ba-before-layer {
+            width: 50%;
+            overflow: hidden;
+            z-index: 2;
+            border-right: 1.5px solid var(--accent);
+        }
+
+        .ba-before-layer img {
+            max-width: none;
+            filter: saturate(0.35) contrast(0.75) brightness(1.06);
+        }
+
+        .ba-after-layer img {
+            filter: saturate(1.18) contrast(1.15);
+        }
+
+        .ba-badge {
+            position: absolute;
+            top: 0.75rem;
+            z-index: 3;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.625rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background-color: rgba(16, 16, 16, 0.8);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            pointer-events: none;
+        }
+
+        .ba-badge.before { left: 0.75rem; }
+        .ba-badge.after  { right: 0.75rem; color: var(--accent); border-color: var(--border-accent); }
+
+        .ba-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--bg-primary);
+            border: 1.5px solid var(--accent);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .ba-meta {
+            padding: 1.15rem 0.25rem 0.35rem;
+        }
+
+        .ba-meta h3 {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .ba-meta p {
+            font-size: 0.825rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           10. SECTION 5: MY CREATIVE SKILLS
+           ========================================================================== */
+        .skills-section {
+            padding: var(--section-padding) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        .skill-pillar {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            padding: 2.5rem 2rem;
+            transition: border-color 0.35s ease;
+        }
+
+        .skill-pillar:hover {
+            border-color: var(--border-accent);
+        }
+
+        .pillar-number {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .pillar-title {
+            font-family: var(--font-serif);
+            font-size: 1.65rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .skill-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .skill-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.925rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .skill-list li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================================
+           11. SECTION 6: MY EXPERIENCE
+           ========================================================================== */
+        .experience-section {
+            padding: var(--section-padding) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .experience-layout {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exp-item {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 1.75rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            transition: padding-left 0.35s var(--transition-smooth);
+        }
+
+        .exp-item:first-child {
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .exp-item:hover {
+            padding-left: 0.75rem;
+        }
+
+        .exp-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        .exp-tag {
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        /* ==========================================================================
+           12. SECTION 7: CONTACT
+           ========================================================================== */
+        .contact-section {
+            padding: var(--section-padding) 0;
+        }
+
+        .contact-box {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            padding: clamp(2.25rem, 5vw, 4.5rem);
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2.25rem;
+        }
+
+        .contact-details-card {
+            border-left: 1px solid var(--border-subtle);
+            padding-left: clamp(1.5rem, 4vw, 3rem);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .detail-row span {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-row p, .detail-row a {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .detail-row a:hover {
+            color: var(--accent);
+        }
+
+        /* ==========================================================================
+           13. SECTION 8: FOOTER
+           ========================================================================== */
+        .footer {
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-subtle);
+            background-color: var(--bg-primary);
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .footer-inner strong {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ==========================================================================
+           14. VIDEO PREVIEW MODAL
+           ========================================================================== */
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background-color: rgba(10, 10, 10, 0.94);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+
+        .video-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-dialog {
+            width: 100%;
+            max-width: 960px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-accent);
+            overflow: hidden;
+            transform: translateY(16px);
+            transition: transform 0.4s var(--transition-smooth);
+        }
+
+        .video-modal.open .modal-dialog {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.15rem 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .modal-header-info span {
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+        }
+
+        .modal-header-info h4 {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            transition: all 0.25s ease;
+        }
+
+        .modal-close:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .modal-video-stage {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #080808;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-video-stage video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #000;
+        }
+
+        .modal-fallback-notice {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background-color: #121212;
+            color: var(--text-secondary);
+        }
+
+        .modal-fallback-notice.visible {
+            display: flex;
+        }
+
+        .modal-fallback-notice code {
+            margin-top: 0.75rem;
+            padding: 0.45rem 0.9rem;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-accent);
+            color: var(--accent);
+            font-size: 0.85rem;
+        }
+
+        .modal-footer {
+            padding: 1.15rem 1.5rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* ==========================================================================
+           15. SUBTLE SCROLL REVEAL ANIMATIONS
+           ========================================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.85s var(--transition-smooth), transform 0.85s var(--transition-smooth);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           16. RESPONSIVE BREAKPOINTS
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-reel-card {
+                max-width: 440px;
+            }
+
+            .about-grid,
+            .experience-layout,
+            .contact-box {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .contact-details-card {
+                border-left: none;
+                border-top: 1px solid var(--border-subtle);
+                padding-left: 0;
+                padding-top: 2rem;
+            }
+
+            .ba-grid,
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .project-card.span-7,
+            .project-card.span-5,
+            .project-card.span-4,
+            .project-card.span-6 {
+                grid-column: span 6;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                inset: 0;
+                background-color: var(--bg-primary);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.35s ease, visibility 0.35s ease;
+            }
+
+            .nav-links.open {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                font-size: 1.15rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card.span-7,
+            .project-card.span-5,
+            .project-card.span-4,
+            .project-card.span-6 {
+                grid-column: span 1;
+            }
+
+            .ba-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-meta-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .exp-item {
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================================================================
+         NAVIGATION BAR
+         ====================================================================== -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="#top" class="brand-logo" aria-label="HAZIQ Home">HAZIQ<span>.</span></a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Selected Work</a></li>
+                <li><a href="#before-after">Before &amp; After</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ======================================================================
+         SECTION 1: HERO SECTION
+         ====================================================================== -->
+    <section class="hero" id="top">
+        <!-- REPLACEABLE HERO BACKGROUND VIDEO:
+             Place your ambient showreel loop at: videos/hero-reel-loop.mp4 -->
+        <div class="hero-media-bg" aria-hidden="true">
+            <video autoplay muted loop playsinline preload="none" poster="images/hero-poster-placeholder.jpg">
+                <source src="videos/hero-reel-loop.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="container hero-grid">
+            <div class="hero-content reveal">
+                <div class="availability-pill">
+                    <span class="status-dot"></span>
+                    <span>Available for Creative Opportunities</span>
+                </div>
+
+                <h1 class="hero-title">
+                    <span class="line">CRAFTING VISUALS.</span>
+                    <span class="line italic-accent">TELLING STORIES.</span>
+                </h1>
+
+                <p class="hero-sub">
+                    I’m Haziq, a Video Editor and AI Creative Content Creator based in Melaka, Malaysia. I turn ideas into engaging visual experiences.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#work" class="btn btn-primary">Explore My Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+
+            <!-- Featured Showreel Frame Placeholder -->
+            <div class="hero-reel-card reveal">
+                <div class="hero-reel-frame" role="button" tabindex="0"
+                     data-video-src="videos/showreel-placeholder.mp4"
+                     data-video-title="Featured Showreel Placeholder"
+                     data-video-category="Showreel Overview"
+                     data-video-desc="Placeholder for Haziq's main editing showreel. Replace videos/showreel-placeholder.mp4 with your edited reel."
+                     onclick="openVideoModalFromElement(this)">
+                    
+                    <!-- REPLACEABLE SHOWREEL PREVIEW VIDEO: videos/showreel-placeholder.mp4 -->
+                    <video muted loop playsinline preload="none">
+                        <source src="videos/showreel-placeholder.mp4" type="video/mp4">
+                    </video>
+
+                    <div class="reel-frame-top">
+                        <span>SHOWREEL PLACEHOLDER</span>
+                        <span>CAPCUT PC / AI</span>
+                    </div>
+
+                    <div class="reel-center-trigger">
+                        <div class="play-circle-sm">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                            </svg>
+                        </div>
+                        <span class="play-label" style="display:block;">Preview Reel</span>
+                    </div>
+
+                    <div class="reel-frame-bottom">
+                        <span>MELAKA, MY</span>
+                        <span>2+ YRS EXP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 2: ABOUT ME
+         ====================================================================== -->
+    <section class="about-section" id="about">
+        <div class="container about-grid">
+            <!-- REPLACEABLE PROFILE PORTRAIT:
+                 Save your portrait photo as: images/haziq-profile.jpg -->
+            <div class="profile-frame reveal">
+                <div class="profile-image-box">
+                    <img src="images/haziq-profile.jpg"
+                         alt="Muhammad Haziq Hafiz Bin Maizan — Video Editor"
+                         loading="lazy"
+                         onerror="this.style.display='none';">
+                    <div class="placeholder-caption">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                        <strong>Profile Image Placeholder</strong>
+                        <span>Replace: images/haziq-profile.jpg</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-content reveal">
+                <span class="eyebrow">Biography</span>
+                <h2 class="section-title">A LITTLE ABOUT <em>ME</em></h2>
+
+                <p>
+                    I’m a creative video editor with over 2 years of practical experience in video editing and digital content creation.
+                </p>
+                <p>
+                    I enjoy transforming raw footage into meaningful visual stories through editing, pacing, sound design, transitions, and creative direction.
+                </p>
+                <p>
+                    I’m also passionate about exploring AI-powered creative tools to expand the possibilities of digital content production.
+                </p>
+
+                <div class="about-meta-row">
+                    <div class="meta-item">
+                        <span>Primary Software</span>
+                        <strong>CapCut PC</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Experience</span>
+                        <strong>2+ Years</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Based In</span>
+                        <strong>Melaka, Malaysia</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 3: MY SELECTED WORK
+         ====================================================================== -->
+    <section class="work-section" id="work">
+        <div class="container">
+            <div class="work-header reveal">
+                <div>
+                    <span class="eyebrow">Curated Archive</span>
+                    <h2 class="section-title">MY SELECTED <em>WORK</em></h2>
+                    <p class="section-subtitle">
+                        A structured showcase of replaceable project placeholders across commercial edits, social media storytelling, cinematic cuts, and AI-assisted productions.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactive Category Filters -->
+            <div class="filter-bar reveal" role="tablist" aria-label="Filter projects by category">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="Product Advertisement">Product Advertisement</button>
+                <button class="filter-btn" data-filter="Social Media Content">Social Media Content</button>
+                <button class="filter-btn" data-filter="Cinematic Video">Cinematic Video</button>
+                <button class="filter-btn" data-filter="Before & After Editing">Before &amp; After Editing</button>
+                <button class="filter-btn" data-filter="AI Creative Projects">AI Creative Projects</button>
+            </div>
+
+            <!-- Responsive Varied Aspect-Ratio HTML5 Video Gallery (5 Local MP4 Slots) -->
+            <div class="portfolio-grid" id="portfolioGrid">
+
+                <!-- PROJECT 01: Product Advertisement (16:9 Wide) -->
+                <article class="project-card span-7 reveal" data-category="Product Advertisement">
+                    <div class="project-thumb-wrapper ratio-16-9" data-inline-video-container>
+                        <span class="video-placeholder-label">FILE: videos/project-01.mp4</span>
+                        <!-- HTML5 VIDEO ELEMENT: Replace videos/project-01.mp4 & images/thumb-01.jpg -->
+                        <video class="gallery-video"
+                               preload="metadata"
+                               playsinline
+                               poster="images/thumb-01.jpg"
+                               data-video-src="videos/project-01.mp4"
+                               data-video-title="Project 01 — Product Advertisement"
+                               data-video-category="Product Advertisement"
+                               data-video-desc="Commercial product showcase featuring dynamic pacing, rhythmic audio sync, and clean text callouts.">
+                            <source src="videos/project-01.mp4" type="video/mp4">
+                            Your browser does not support HTML5 MP4 video.
+                        </video>
+                        <div class="play-overlay" role="button" tabindex="0" aria-label="Play Project 01">
+                            <div class="play-btn-circle">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                            </div>
+                            <span class="play-label">Play Video</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Product Advertisement</span>
+                        <h3 class="project-title">Product Commercial Edit — Project 01</h3>
+                        <p class="project-desc">High-retention promotional edit highlighting product aesthetics, smooth transitions, and crisp audio synchronization.</p>
+                        <button type="button" class="modal-trigger-btn" onclick="openModalForCard(this)">Expand Cinema View &rarr;</button>
+                    </div>
+                </article>
+
+                <!-- PROJECT 02: Social Media Content (4:5 Vertical Editorial) -->
+                <article class="project-card span-5 reveal" data-category="Social Media Content">
+                    <div class="project-thumb-wrapper ratio-4-5" data-inline-video-container>
+                        <span class="video-placeholder-label">FILE: videos/project-02.mp4</span>
+                        <!-- HTML5 VIDEO ELEMENT: Replace videos/project-02.mp4 & images/thumb-02.jpg -->
+                        <video class="gallery-video"
+                               preload="metadata"
+                               playsinline
+                               poster="images/thumb-02.jpg"
+                               data-video-src="videos/project-02.mp4"
+                               data-video-title="Project 02 — Social Media Content"
+                               data-video-category="Social Media Content"
+                               data-video-desc="Short-form vertical storytelling with animated subtitles and engaging hooks.">
+                            <source src="videos/project-02.mp4" type="video/mp4">
+                            Your browser does not support HTML5 MP4 video.
+                        </video>
+                        <div class="play-overlay" role="button" tabindex="0" aria-label="Play Project 02">
+                            <div class="play-btn-circle">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                            </div>
+                            <span class="play-label">Play Video</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Social Media Content</span>
+                        <h3 class="project-title">Short-Form Narrative — Project 02</h3>
+                        <p class="project-desc">Fast-paced vertical content engineered for viewer retention with custom text animations and kinetic subtitles.</p>
+                        <button type="button" class="modal-trigger-btn" onclick="openModalForCard(this)">Expand Cinema View &rarr;</button>
+                    </div>
+                </article>
+
+                <!-- PROJECT 03: Cinematic Video (4:5) -->
+                <article class="project-card span-4 reveal" data-category="Cinematic Video">
+                    <div class="project-thumb-wrapper ratio-4-5" data-inline-video-container>
+                        <span class="video-placeholder-label">FILE: videos/project-03.mp4</span>
+                        <!-- HTML5 VIDEO ELEMENT: Replace videos/project-03.mp4 & images/thumb-03.jpg -->
+                        <video class="gallery-video"
+                               preload="metadata"
+                               playsinline
+                               poster="images/thumb-03.jpg"
+                               data-video-src="videos/project-03.mp4"
+                               data-video-title="Project 03 — Cinematic Video"
+                               data-video-category="Cinematic Video"
+                               data-video-desc="Atmospheric visual storytelling, mood-driven color grading, and layered sound design.">
+                            <source src="videos/project-03.mp4" type="video/mp4">
+                            Your browser does not support HTML5 MP4 video.
+                        </video>
+                        <div class="play-overlay" role="button" tabindex="0" aria-label="Play Project 03">
+                            <div class="play-btn-circle">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                            </div>
+                            <span class="play-label">Play Video</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Cinematic Video</span>
+                        <h3 class="project-title">Visual Mood Piece — Project 03</h3>
+                        <p class="project-desc">Atmospheric pacing paired with basic color grading and intentional transition flow.</p>
+                        <button type="button" class="modal-trigger-btn" onclick="openModalForCard(this)">Expand Cinema View &rarr;</button>
+                    </div>
+                </article>
+
+                <!-- PROJECT 04: Before & After Editing (16:9) -->
+                <article class="project-card span-8 reveal" style="grid-column: span 8;" data-category="Before & After Editing">
+                    <div class="project-thumb-wrapper ratio-16-9" data-inline-video-container>
+                        <span class="video-placeholder-label">FILE: videos/project-04.mp4</span>
+                        <!-- HTML5 VIDEO ELEMENT: Replace videos/project-04.mp4 & images/thumb-04.jpg -->
+                        <video class="gallery-video"
+                               preload="metadata"
+                               playsinline
+                               poster="images/thumb-04.jpg"
+                               data-video-src="videos/project-04.mp4"
+                               data-video-title="Project 04 — Before & After Editing"
+                               data-video-category="Before & After Editing"
+                               data-video-desc="Raw camera clips transformed through CapCut PC cuts, effects, and color adjustments.">
+                            <source src="videos/project-04.mp4" type="video/mp4">
+                            Your browser does not support HTML5 MP4 video.
+                        </video>
+                        <div class="play-overlay" role="button" tabindex="0" aria-label="Play Project 04">
+                            <div class="play-btn-circle">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                            </div>
+                            <span class="play-label">Play Video</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Before &amp; After Editing</span>
+                        <h3 class="project-title">Raw Footage Transformation — Project 04</h3>
+                        <p class="project-desc">Side-by-side timeline breakdown showcasing raw clip selection, pacing refinement, and tonal grading.</p>
+                        <button type="button" class="modal-trigger-btn" onclick="openModalForCard(this)">Expand Cinema View &rarr;</button>
+                    </div>
+                </article>
+
+                <!-- PROJECT 05: AI Creative Projects (16:9 Featured Full Width) -->
+                <article class="project-card reveal" style="grid-column: span 12;" data-category="AI Creative Projects">
+                    <div class="project-thumb-wrapper ratio-16-9" data-inline-video-container>
+                        <span class="video-placeholder-label">FILE: videos/project-05.mp4</span>
+                        <!-- HTML5 VIDEO ELEMENT: Replace videos/project-05.mp4 & images/thumb-05.jpg -->
+                        <video class="gallery-video"
+                               preload="metadata"
+                               playsinline
+                               poster="images/thumb-05.jpg"
+                               data-video-src="videos/project-05.mp4"
+                               data-video-title="Project 05 — AI Creative Production"
+                               data-video-category="AI Creative Projects"
+                               data-video-desc="Combining AI image generation, AI video synthesis, and AI voiceover narration edited seamlessly in CapCut PC.">
+                            <source src="videos/project-05.mp4" type="video/mp4">
+                            Your browser does not support HTML5 MP4 video.
+                        </video>
+                        <div class="play-overlay" role="button" tabindex="0" aria-label="Play Project 05">
+                            <div class="play-btn-circle">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                            </div>
+                            <span class="play-label">Play Video</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">AI Creative Projects</span>
+                        <h3 class="project-title">AI-Assisted Visual Story — Project 05</h3>
+                        <p class="project-desc">Concept-driven visual narrative blending AI-generated imagery, motion clips, and natural AI voiceover.</p>
+                        <button type="button" class="modal-trigger-btn" onclick="openModalForCard(this)">Expand Cinema View &rarr;</button>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 4: BEFORE & AFTER INTERACTIVE SLIDER
+         ====================================================================== -->
+    <section class="ba-section" id="before-after">
+        <div class="container">
+            <div class="ba-header reveal">
+                <span class="eyebrow">Post-Production Craft</span>
+                <h2 class="section-title">FROM RAW TO <em>REFINED.</em></h2>
+                <p class="section-subtitle">
+                    Every frame has potential. The editing process brings the vision to life. Drag the slider across each frame to compare original footage against the refined edit.
+                </p>
+            </div>
+
+            <div class="ba-grid">
+                <!-- COMPARISON PLACEHOLDER 01 -->
+                <div class="ba-card reveal">
+                    <div class="ba-slider-container" data-ba-slider>
+                        <!-- AFTER IMAGE PLACEHOLDER: images/ba-01-after.jpg -->
+                        <div class="ba-layer ba-after-layer">
+                            <img src="images/ba-01-after.jpg" alt="Comparison 01 Edited After Frame" loading="lazy"
+                                 onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23241f19%22/><text x=%2272%25%22 y=%2252%25%22 fill=%22%23B7A58B%22 font-family=%22sans-serif%22 font-size=%2215%22 text-anchor=%22middle%22>After Frame 01</text></svg>';">
+                        </div>
+                        <!-- BEFORE IMAGE PLACEHOLDER: images/ba-01-before.jpg -->
+                        <div class="ba-layer ba-before-layer">
+                            <img src="images/ba-01-before.jpg" alt="Comparison 01 Raw Before Frame" loading="lazy"
+                                 onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23181818%22/><text x=%2228%25%22 y=%2252%25%22 fill=%22%23888888%22 font-family=%22sans-serif%22 font-size=%2215%22 text-anchor=%22middle%22>Raw Frame 01</text></svg>';">
+                        </div>
+                        <span class="ba-badge before">Before</span>
+                        <span class="ba-badge after">After</span>
+                        <div class="ba-handle" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:-6px;">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ba-meta">
+                        <h3>Commercial Color &amp; Contrast</h3>
+                        <p>Replace: images/ba-01-before.jpg &amp; ba-01-after.jpg</p>
+                    </div>
+                </div>
+
+                <!-- COMPARISON PLACEHOLDER 02 -->
+                <div class="ba-card reveal">
+                    <div class="ba-slider-container" data-ba-slider>
+                        <!-- AFTER IMAGE PLACEHOLDER: images/ba-02-after.jpg -->
+                        <div class="ba-layer ba-after-layer">
+                            <img src="images/ba-02-after.jpg" alt="Comparison 02 Edited After Frame" loading="lazy"
+                                 onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23241f19%22/><text x=%2272%25%22 y=%2252%25%22 fill=%22%23B7A58B%22 font-family=%22sans-serif%22 font-size=%2215%22 text-anchor=%22middle%22>After Frame 02</text></svg>';">
+                        </div>
+                        <!-- BEFORE IMAGE PLACEHOLDER: images/ba-02-before.jpg -->
+                        <div class="ba-layer ba-before-layer">
+                            <img src="images/ba-02-before.jpg" alt="Comparison 02 Raw Before Frame" loading="lazy"
+                                 onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23181818%22/><text x=%2228%25%22 y=%2252%25%22 fill=%22%23888888%22 font-family=%22sans-serif%22 font-size=%2215%22 text-anchor=%22middle%22>Raw Frame 02</text></svg>';">
+                        </div>
+                        <span class="ba-badge before">Before</span>
+                        <span class="ba-badge after">After</span>
+                        <div class="ba-handle" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:-6px;">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ba-meta">
+                        <h3>Moody Atmospheric Look</h3>
+                        <p>Replace: images/ba-02-before.jpg &amp; ba-02-after.jpg</p>
+                    </div>
+                </div>
+
+                <!-- COMPARISON PLACEHOLDER 03 -->
+                <div class="ba-card reveal">
+                    <div class="ba-slider-container" data-ba-slider>
+                        <!-- AFTER IMAGE PLACEHOLDER: images/ba-03-after.jpg -->
+                        <div class="ba-layer ba-after-layer">
+                            <img src="images/ba-03-after.jpg" alt="Comparison 03 Edited After Frame" loading="lazy"
+                                 onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23241f19%22/><text x=%2272%25%22 y=%2252%25%22 fill=%22%23B7A58B%22 font-family=%22sans-serif%22 font-size=%2215%22 text-anchor=%22middle%22>After Frame 03</text></svg>';">
+                        </div>
+                        <!-- BEFORE IMAGE PLACEHOLDER: images/ba-03-before.jpg -->
+                        <div class="ba-layer ba-before-layer">
+                            <img src="images/ba-03-before.jpg" alt="Comparison 03 Raw Before Frame" loading="lazy"
+                                 onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23181818%22/><text x=%2228%25%22 y=%2252%25%22 fill=%22%23888888%22 font-family=%22sans-serif%22 font-size=%2215%22 text-anchor=%22middle%22>Raw Frame 03</text></svg>';">
+                        </div>
+                        <span class="ba-badge before">Before</span>
+                        <span class="ba-badge after">After</span>
+                        <div class="ba-handle" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:-6px;">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ba-meta">
+                        <h3>Social Content Enhancement</h3>
+                        <p>Replace: images/ba-03-before.jpg &amp; ba-03-after.jpg</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 5: MY CREATIVE SKILLS
+         ====================================================================== -->
+    <section class="skills-section" id="skills">
+        <div class="container">
+            <div class="reveal">
+                <span class="eyebrow">Capabilities</span>
+                <h2 class="section-title">MY CREATIVE <em>SKILLS</em></h2>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Pillar 01: VIDEO EDITING -->
+                <div class="skill-pillar reveal">
+                    <span class="pillar-number">01.</span>
+                    <h3 class="pillar-title">VIDEO EDITING</h3>
+                    <ul class="skill-list">
+                        <li>CapCut PC</li>
+                        <li>Transitions &amp; Effects</li>
+                        <li>Audio Synchronization</li>
+                        <li>Text Animation</li>
+                        <li>Subtitles</li>
+                        <li>Basic Color Grading</li>
+                        <li>Short-form Content Editing</li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 02: AI CREATIVE -->
+                <div class="skill-pillar reveal">
+                    <span class="pillar-number">02.</span>
+                    <h3 class="pillar-title">AI CREATIVE</h3>
+                    <ul class="skill-list">
+                        <li>AI Voiceover</li>
+                        <li>AI Image Generation</li>
+                        <li>AI Video Generation</li>
+                        <li>AI-Assisted Production</li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 03: CREATIVE -->
+                <div class="skill-pillar reveal">
+                    <span class="pillar-number">03.</span>
+                    <h3 class="pillar-title">CREATIVE</h3>
+                    <ul class="skill-list">
+                        <li>Visual Storytelling</li>
+                        <li>Content Creation</li>
+                        <li>Creative Concept Development</li>
+                        <li>Digital Advertising Content</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 6: MY EXPERIENCE
+         ====================================================================== -->
+    <section class="experience-section" id="experience">
+        <div class="container experience-layout">
+            <div class="reveal">
+                <span class="eyebrow">Track Record</span>
+                <h2 class="section-title">2+ YEARS OF <em>CREATING.</em></h2>
+                <p class="section-subtitle">
+                    Hands-on production experience turning concepts into polished digital video assets tailored for modern audiences.
+                </p>
+            </div>
+
+            <div class="exp-list reveal">
+                <div class="exp-item">
+                    <h3 class="exp-title">2+ Years of Video Editing Experience</h3>
+                    <span class="exp-tag">Core Craft</span>
+                </div>
+                <div class="exp-item">
+                    <h3 class="exp-title">Digital Content Creation</h3>
+                    <span class="exp-tag">Social &amp; Brand</span>
+                </div>
+                <div class="exp-item">
+                    <h3 class="exp-title">AI-Assisted Creative Production</h3>
+                    <span class="exp-tag">Next-Gen Workflow</span>
+                </div>
+                <div class="exp-item">
+                    <h3 class="exp-title">Practical Editing Experience</h3>
+                    <span class="exp-tag">CapCut PC</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 7: CONTACT
+         ====================================================================== -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-box reveal">
+                <div>
+                    <span class="eyebrow">Collaborate</span>
+                    <h2 class="section-title">LET’S CREATE <em>SOMETHING GREAT.</em></h2>
+                    <p class="section-subtitle">
+                        Have a project in mind or looking for a creative video editor? Let’s connect.
+                    </p>
+
+                    <div class="contact-actions">
+                        <a href="mailto:aziqmaizan@gmail.com?subject=Video%20Editing%20Inquiry%20%E2%80%94%20Haziq" class="btn btn-primary">
+                            Email Me
+                        </a>
+                        <a href="https://wa.me/60162750129" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-details-card">
+                    <div class="detail-row">
+                        <span>Full Name</span>
+                        <p>Muhammad Haziq Hafiz Bin Maizan</p>
+                    </div>
+                    <div class="detail-row">
+                        <span>Email Address</span>
+                        <a href="mailto:aziqmaizan@gmail.com">aziqmaizan@gmail.com</a>
+                    </div>
+                    <div class="detail-row">
+                        <span>Phone / WhatsApp</span>
+                        <a href="tel:+60162750129">0162750129</a>
+                    </div>
+                    <div class="detail-row">
+                        <span>Location</span>
+                        <p>Melaka, Malaysia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 8: FOOTER
+         ====================================================================== -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>DESIGNED WITH CREATIVITY BY <strong>HAZIQ.</strong></p>
+            <p>&copy; <span id="currentYear"></span> Muhammad Haziq Hafiz Bin Maizan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ======================================================================
+         VIDEO PREVIEW MODAL
+         ====================================================================== -->
+    <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-header-info">
+                    <span id="modalCategory">Category</span>
+                    <h4 id="modalTitle">Project Title</h4>
+                </div>
+                <button class="modal-close" id="modalCloseBtn" aria-label="Close Video Preview">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-video-stage">
+                <video id="modalVideoPlayer" controls playsinline preload="metadata">
+                    <source id="modalVideoSource" src="" type="video/mp4">
+                    Your browser does not support HTML5 video playback.
+                </video>
+
+                <!-- Shown cleanly if placeholder video file hasn't been uploaded yet -->
+                <div class="modal-fallback-notice" id="modalFallbackNotice">
+                    <p style="color: var(--text-primary); font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.4rem;">
+                        Video Placeholder Ready
+                    </p>
+                    <p style="max-width: 440px; font-size: 0.9rem;">
+                        Add your exported MP4 file to your project directory using the path below to enable instant playback:
+                    </p>
+                    <code id="fallbackPathDisplay">videos/project-01.mp4</code>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <p id="modalDesc">Project description goes here.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+         VANILLA JAVASCRIPT INTERACTIONS
+         ====================================================================== -->
+    <script>
+        (function () {
+            'use strict';
+
+            // 1. Dynamic Copyright Year
+            const yearEl = document.getElementById('currentYear');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
+            }
+
+            // 2. Sticky Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            const handleScroll = () => {
+                if (window.scrollY > 40) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            };
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            handleScroll();
+
+            // 3. Mobile Navigation Drawer
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', () => {
+                    const isOpen = navLinks.classList.toggle('open');
+                    navToggle.classList.toggle('active', isOpen);
+                    navToggle.setAttribute('aria-expanded', String(isOpen));
+                    document.body.style.overflow = isOpen ? 'hidden' : '';
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('open');
+                        navToggle.classList.remove('active');
+                        navToggle.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+
+            // 4. Portfolio Category Filtering
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const selectedCategory = btn.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                            card.classList.remove('hidden-item');
+                        } else {
+                            card.classList.add('hidden-item');
+                            const vid = card.querySelector('video.gallery-video');
+                            if (vid && !vid.paused) vid.pause();
+                        }
+                    });
+                });
+            });
+
+            // 4B. Inline HTML5 Gallery Video Playback & Controls
+            const galleryContainers = document.querySelectorAll('[data-inline-video-container]');
+            galleryContainers.forEach(container => {
+                const video = container.querySelector('video.gallery-video');
+                const overlay = container.querySelector('.play-overlay');
+                const card = container.closest('.project-card');
+
+                if (!video || !overlay || !card) return;
+
+                const startInlineVideo = () => {
+                    // Pause any other currently playing gallery video
+                    document.querySelectorAll('video.gallery-video').forEach(other => {
+                        if (other !== video && !other.paused) {
+                            other.pause();
+                        }
+                    });
+
+                    video.controls = true;
+                    card.classList.add('is-playing');
+                    const playAttempt = video.play();
+                    if (playAttempt !== undefined) {
+                        playAttempt.catch(() => {
+                            // If MP4 file is not yet placed in videos/, open the modal guide
+                            card.classList.remove('is-playing');
+                            video.controls = false;
+                            window.openVideoModalFromElement(video);
+                        });
+                    }
+                };
+
+                overlay.addEventListener('click', startInlineVideo);
+                overlay.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        startInlineVideo();
+                    }
+                });
+
+                video.addEventListener('pause', () => {
+                    if (video.ended || video.currentTime === 0) {
+                        card.classList.remove('is-playing');
+                        video.controls = false;
+                    }
+                });
+
+                video.addEventListener('ended', () => {
+                    card.classList.remove('is-playing');
+                    video.controls = false;
+                });
+            });
+
+            window.openModalForCard = function (btn) {
+                const card = btn.closest('.project-card');
+                const video = card ? card.querySelector('video.gallery-video') : null;
+                if (video) {
+                    if (!video.paused) video.pause();
+                    window.openVideoModalFromElement(video);
+                }
+            };
+
+            // 5. Video Preview Modal Logic
+            const videoModal = document.getElementById('videoModal');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const modalVideoPlayer = document.getElementById('modalVideoPlayer');
+            const modalVideoSource = document.getElementById('modalVideoSource');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalFallbackNotice = document.getElementById('modalFallbackNotice');
+            const fallbackPathDisplay = document.getElementById('fallbackPathDisplay');
+
+            window.openVideoModalFromElement = function (el) {
+                const src = el.getAttribute('data-video-src') || '';
+                const title = el.getAttribute('data-video-title') || 'Video Preview';
+                const category = el.getAttribute('data-video-category') || 'Portfolio';
+                const desc = el.getAttribute('data-video-desc') || '';
+
+                modalTitle.textContent = title;
+                modalCategory.textContent = category;
+                modalDesc.textContent = desc;
+                fallbackPathDisplay.textContent = src;
+
+                // Reset fallback & load video
+                modalFallbackNotice.classList.remove('visible');
+                modalVideoPlayer.style.display = 'block';
+                modalVideoSource.setAttribute('src', src);
+                modalVideoPlayer.load();
+
+                videoModal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+
+                const playPromise = modalVideoPlayer.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        // Autoplay prevented or placeholder file not yet present on disk
+                    });
+                }
+            };
+
+            // Handle missing placeholder MP4 gracefully
+            modalVideoSource.addEventListener('error', () => {
+                modalVideoPlayer.style.display = 'none';
+                modalFallbackNotice.classList.add('visible');
+            });
+
+            function closeVideoModal() {
+                videoModal.classList.remove('open');
+                modalVideoPlayer.pause();
+                modalVideoSource.setAttribute('src', '');
+                document.body.style.overflow = '';
+            }
+
+            modalCloseBtn.addEventListener('click', closeVideoModal);
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    closeVideoModal();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && videoModal.classList.contains('open')) {
+                    closeVideoModal();
+                }
+            });
+
+            // Keyboard accessibility for card triggers
+            document.querySelectorAll('[role="button"][data-video-src]').forEach(trigger => {
+                trigger.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        window.openVideoModalFromElement(trigger);
+                    }
+                });
+            });
+
+            // 6. Interactive Before & After Comparison Sliders
+            const baSliders = document.querySelectorAll('[data-ba-slider]');
+
+            baSliders.forEach(slider => {
+                const beforeLayer = slider.querySelector('.ba-before-layer');
+                const beforeImg = beforeLayer ? beforeLayer.querySelector('img') : null;
+                const handle = slider.querySelector('.ba-handle');
+                let isDragging = false;
+
+                const syncInnerImageWidth = () => {
+                    if (beforeImg) {
+                        beforeImg.style.width = slider.offsetWidth + 'px';
+                    }
+                };
+
+                syncInnerImageWidth();
+                window.addEventListener('resize', syncInnerImageWidth);
+
+                const updatePosition = (clientX) => {
+                    const rect = slider.getBoundingClientRect();
+                    let percent = ((clientX - rect.left) / rect.width) * 100;
+                    percent = Math.max(0, Math.min(100, percent));
+
+                    if (beforeLayer) beforeLayer.style.width = percent + '%';
+                    if (handle) handle.style.left = percent + '%';
+                };
+
+                slider.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    updatePosition(e.clientX);
+                });
+
+                window.addEventListener('mouseup', () => {
+                    isDragging = false;
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    updatePosition(e.clientX);
+                });
+
+                // Touch support for mobile & tablets
+                slider.addEventListener('touchstart', (e) => {
+                    isDragging = true;
+                    if (e.touches[0]) updatePosition(e.touches[0].clientX);
+                }, { passive: true });
+
+                window.addEventListener('touchend', () => {
+                    isDragging = false;
+                });
+
+                slider.addEventListener('touchmove', (e) => {
+                    if (!isDragging || !e.touches[0]) return;
+                    updatePosition(e.touches[0].clientX);
+                }, { passive: true });
+            });
+
+            // 7. Subtle IntersectionObserver Scroll Reveal
+            const revealElements = document.querySelectorAll('.reveal');
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12 });
+
+                revealElements.forEach(el => observer.observe(el));
+            } else {
+                revealElements.forEach(el => el.classList.add('is-visible'));
+            }
+        })();
+    </script>
+</body>
+</html>
